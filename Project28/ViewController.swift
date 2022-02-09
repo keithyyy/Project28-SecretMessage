@@ -5,6 +5,13 @@
 //  Created by Keith Crooc on 2022-02-07.
 //
 
+// CHALLENGE
+// 1. Add a Done button as a navigation bar item that causes the app to re-lock immediately rather than waiting for the user to quit. This should only be shown when the app is unlocked. ✅
+
+// 2. Create a password system for your app so that the Touch ID/Face ID fallback is more useful. You'll need to use an alert controller with a text field like we did in project 5, and I suggest you save the password in the keychain ✅
+
+// 3. Go back to project 10 (Names to Faces) and add biometric authentication so the user’s pictures are shown only when they have unlocked the app. You’ll need to give some thought to how you can hide the pictures – perhaps leave the array empty until they are authenticated
+
 import UIKit
 // call in our biometric authentication stuff
 import LocalAuthentication
@@ -12,6 +19,7 @@ import LocalAuthentication
 class ViewController: UIViewController {
 
     @IBOutlet var secret: UITextView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +33,15 @@ class ViewController: UIViewController {
         
 //        to watch for when our app is has been "backgrounded" AKA closed, user went to homescreen
         notificationCenter.addObserver(self, selector: #selector(saveSecretMessage), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        
+        
+//        challenge 1 - adding a done button.
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(lockSecret))
+        
+        
+//        challenge 2 - saving password to keychain
+        KeychainWrapper.standard.set("qwer", forKey: "SecretPassword")
     }
 
     @IBAction func authenticateTapped(_ sender: Any) {
@@ -43,9 +60,30 @@ class ViewController: UIViewController {
                         self?.unlockSecretMessage()
                     } else {
 //                        error
-                        let ac = UIAlertController(title: "Authentication Failed", message: "Could not verify, please try again", preferredStyle: .alert)
-                        ac.addAction(UIAlertAction(title: "OK", style: .default))
-                        self?.present(ac, animated: true)
+//                        let ac = UIAlertController(title: "Authentication Failed", message: "Could not verify, please try again", preferredStyle: .alert)
+//                        ac.addAction(UIAlertAction(title: "OK", style: .default))
+//                        self?.present(ac, animated: true)
+                        
+                        
+//                        challenge 2
+                        
+                        let acPassword = UIAlertController(title: "Authentication Failed", message: "Could not verify, please enter password", preferredStyle: .alert)
+                        acPassword.addTextField()
+                        
+                        let submitAction = UIAlertAction(title: "Submit", style: .default) {
+                            [unowned acPassword] _ in
+                            let submittedPassword = acPassword.textFields![0]
+                            
+                            self?.validatePassword(pass: submittedPassword.text!)
+                            
+                            
+                        }
+                        
+                        acPassword.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                        acPassword.addAction(submitAction)
+                        
+                        self?.present(acPassword, animated: true)
+                        
                     }
                 }
             }
@@ -58,6 +96,20 @@ class ViewController: UIViewController {
         
         
         unlockSecretMessage()
+    }
+    
+//    challenge 2
+    func validatePassword(pass: String) {
+        
+        let password = KeychainWrapper.standard.string(forKey: "SecretPassword")
+        
+        if pass == password {
+            unlockSecretMessage()
+        } else {
+            let ac = UIAlertController(title: "Authentication Failed", message: "Could not verify, please try again", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
     }
     
     @objc func adjustForKeyboard(notification: Notification) {
@@ -103,6 +155,13 @@ class ViewController: UIViewController {
         secret.resignFirstResponder()
         secret.isHidden = true
         title = "Nothing to see here"
+    }
+    
+    @objc func lockSecret() {
+//        guard secret.isHidden == false else { return }
+        
+        saveSecretMessage()
+        
     }
     
 }
