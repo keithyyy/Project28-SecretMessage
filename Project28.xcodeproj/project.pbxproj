@@ -13,6 +13,8 @@
 		2DA56D1F27B1476A00F9B0A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DA56D1D27B1476A00F9B0A1 /* Main.storyboard */; };
 		2DA56D2127B1476B00F9B0A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DA56D2027B1476B00F9B0A1 /* Assets.xcassets */; };
 		2DA56D2427B1476B00F9B0A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DA56D2227B1476B00F9B0A1 /* LaunchScreen.storyboard */; };
+		2DA56D2D27B14C7200F9B0A1 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA56D2B27B14C7200F9B0A1 /* KeychainItemAccessibility.swift */; };
+		2DA56D2E27B14C7200F9B0A1 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA56D2C27B14C7200F9B0A1 /* KeychainWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		2DA56D2027B1476B00F9B0A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DA56D2327B1476B00F9B0A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2DA56D2527B1476B00F9B0A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DA56D2B27B14C7200F9B0A1 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
+		2DA56D2C27B14C7200F9B0A1 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				2DA56D1727B1476A00F9B0A1 /* AppDelegate.swift */,
 				2DA56D1927B1476A00F9B0A1 /* SceneDelegate.swift */,
 				2DA56D1B27B1476A00F9B0A1 /* ViewController.swift */,
+				2DA56D2B27B14C7200F9B0A1 /* KeychainItemAccessibility.swift */,
+				2DA56D2C27B14C7200F9B0A1 /* KeychainWrapper.swift */,
 				2DA56D1D27B1476A00F9B0A1 /* Main.storyboard */,
 				2DA56D2027B1476B00F9B0A1 /* Assets.xcassets */,
 				2DA56D2227B1476B00F9B0A1 /* LaunchScreen.storyboard */,
@@ -139,8 +145,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DA56D1C27B1476A00F9B0A1 /* ViewController.swift in Sources */,
+				2DA56D2D27B14C7200F9B0A1 /* KeychainItemAccessibility.swift in Sources */,
 				2DA56D1827B1476A00F9B0A1 /* AppDelegate.swift in Sources */,
 				2DA56D1A27B1476A00F9B0A1 /* SceneDelegate.swift in Sources */,
+				2DA56D2E27B14C7200F9B0A1 /* KeychainWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,9 +300,11 @@
 				DEVELOPMENT_TEAM = 73ZGCP94RC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Project28/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Identify yourself.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,9 +330,11 @@
 				DEVELOPMENT_TEAM = 73ZGCP94RC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Project28/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Identify yourself.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
